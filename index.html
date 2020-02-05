@@ -7,6 +7,42 @@
     </head>
 
     <body>
+        <script>
+            fetch('http://localhost:3000/collections/lessons')
+            .then(function(response)
+            {
+             return response.text()
+               }).then(function(text)
+               {
+                   alert(text);
+                   testing.courses = JSON.parse(text);
+               }).catch(function(err){
+            console.log('Fetch problem: '+err.message);
+            });
+            
+            
+            var testing = new Vue({
+                            el: '#coursesDispaly',
+                            data: {
+            
+                                courses: [],
+             }})
+             </script>
+
+        <div id="coursesDispaly">
+            <h1> courses:</h1>
+          
+            <div v-for="course in courses" class="course">
+                <ul> 
+                <li v-for='(value, name) in course'>
+                    {{name}}: {{value}}
+                </li>
+
+                
+                 </ul>  
+            </div>
+        </div>
+
         <div class="container">
             <header>
                 <img id='logo'src=""alt="logo">
@@ -49,65 +85,5 @@
                                     </span>
     </div>
 
-    <script>
-        var userform = new Vue({
-            el: "#userform",
-            data: {
-                currentUser: '',
-                email: '',
-                password: '',
-                userMessage: ''
-            },
-            methods: {
-                signup: function () {
-                    this.userMessage = '';
-
-                    // more validation should be included
-                    if (!this.email) {
-                        this.userMessage = 'error: empty email'; return
-                    }
-                    if (!this.password) {
-                        this.userMessage = 'error: empty password';
-                        return;
-                    }
-                    var newUser = {
-                        'email': this.email, 'password': this.password
-                    }
-                    // a user array should be used
-                    localStorage.setItem('users', JSON.stringify(newUser))
-                },
-
-                var users = '',
-                var newEmail = this.email,
-
-                if(localStorage.getItem('users'));    // 'users' is an array of objects
-        users = JSON.parse(localStorage.getItem('users'));
-
-        if (users) {
-            if (users.some(function (user) { returnuser.email === newEmail })) {
-                alert('Email already exists!');
-                return;
-            }
-            users.push({ 'email': newEmail, 'password': this.password });
-            localStorage.setItem('users', JSON.stringify(users));
-        }
-        else {
-            users = [{ 'email': newEmail, 'password': this.password }];
-            localStorage.setItem('users', JSON.stringify(users));
-
-        }
-        signin: function () {
-            var savedUser = JSON.parse(localStorage.getItem('users'));
-            if (savedUser.email == this.email && savedUser.password == this.password) {
-                this.currentUser = this.email;
-            }
-            else {
-                this.userMessage = ' error: username or password is not correct.'; return;
-            }
-        }
-        signout: function () {
-            this.currentUser = '';
-            this.email = '';
-            this.password = '';
-        }
-    </script>
+   
+      

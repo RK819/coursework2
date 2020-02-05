@@ -1,33 +1,49 @@
 const express = require('express')
-const app = express() 
 
 const bodyParser = require('body-parser')
+var path = require('path');
+const app = express() 
+
+
 app.use(bodyParser.json())
 
 const MongoClient = require('mongodb').MongoClient;
 let db;
 MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
-    db = client.db('afterschool')
+    db = client.db('coursework2')
 })
+var urlencodeParser = bodyParser.urlencoded({extended:false})
+app.use(bodyParser.json())
 
-app.param('courses', (req, res, next, collectionName) => {
+app.param('collectionName', (req, res, next, collectionName) => {
     req.collection = db.collection(collectionName) 
     return next()
 })
 
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+
+})
+/*
 app.param('users', (req, res, next, collectionName) => {
     req.collection = db.collection(collectionName) 
     return next()
 })
-
+*/
 
 app.get('/', function (req, res) { 
-    res.send('Select a collection, e.g., /collections/messages') }) 
- 
-    app.get('/collections/:collectionName', (req, res) => {
-        req.collection.find({}, { limit: 5, sort: [['price', -1]] }).toArray((e, results) =>
+    res.send('Select a collection, e.g., /penchod/messages')
+ }) 
+  app.get('/collections/:collectionName', urlencodeParser,(req, res) => {
+        res.setHeader ('Access-Control-Allow-Origin', '*')
+        req.collection.find({}, { limit: 10, sort: [['price', -1]] }).toArray((e, results) =>
         {         if (e) return next(e)        
-             res.send(results)     }) }) 
+             res.send(results)    
+          console.log(req.body)
+          console.log("hello")
+             })
+
+             }) 
 
 app.post('/collections/:collectionName', (req, res, next) => {
 req.collection.insert(req.body, (e, results) => {
