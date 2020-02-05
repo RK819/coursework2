@@ -56,10 +56,33 @@
                      <input required type="provider" name ="provider" v-model="provider">
                      <label for="ranking">ranking</label>
                      <input required type="ranking" name ="ranking" v-model="ranking">
-                     <button v-on:click='createAccount'>submit</button>
+                     <button v-on:click='createcourse'>submit</button>
             
                 </form>
                 </div>
+
+                <div id="updateCourse">
+                    <h1 style="text-align:center">updatecourse</h1>
+                    
+                    <form>
+                        <label >id</label>
+                        <input  type="text" name ="id" v-model="id">
+                         <label for="topic">topic</label>
+                         <input required type="topic" name ="topic" v-model="topic"  >
+                         <label for="location">location</label>
+                         <input required type="location" name ="location" v-model="location">
+                         <label for="price">Price</label>
+                         <input required type="price" name ="price" v-model="price">
+                         
+                         <button v-on:click='updateData'>submit</button>
+                
+                    </form>
+                    </div>
+
+
+
+
+
 
         <div class="container">
             <header>
@@ -147,6 +170,71 @@ methods:{
   })
 }
 }})
+
+var testing3 = new Vue({
+                el: '#createcourse',
+                data: {
+                    topic:'',
+                  location:'',
+                  price:'',
+                  provider:'',
+                  ranking:'',
+
+                                 
+},
+methods:{
+    createcourse:function () {
+   fetch(`/collections/lessons`, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+    'Content-Type': 'application/json',
+  },
+    
+    body: JSON.stringify({ topic: this.topic, location: this.location, price: this.price, provider: this.provider, ranking: this.ranking }) 
+  }).then(function (response){
+      return response.json()
+  }).then(function(data){
+  console.log('post rest', data)
+  })
+}
+}})
+
+
+
+
+var testing5 = new Vue({
+el: '#updateCourse',
+data: {
+id:'',
+topic:'',
+    location:'',
+    price: '',                
+},
+methods:{
+     updateData:function () {
+         var topicid = this.id
+         var pricee = this.price;
+         var pointNum = parseFloat(pricee);
+        
+         alert(pointNum  );
+  
+   fetch(`/collections/lessons/${topicid}`, {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+    'Content-Type': 'application/json',
+  },
+    
+    body: JSON.stringify({topic: this.topic, location: this.location,price: pricee }) 
+  }).then(function (response){
+      return response.json()
+  }).then(function(data){
+  console.log('post rest', data)
+  })
+}
+}})
+
+
+
 
              </script>
 

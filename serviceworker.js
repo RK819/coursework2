@@ -1,5 +1,5 @@
 if('serviceWorker' in navigator) {
- navigator.serviceWorker.register('/pwa-examples/js13kpwa/sw.js');
+ navigator.serviceWorker.register('/coursework2/sw.js');
 };
 
 var button = document.getElementById("notifications");
@@ -24,9 +24,7 @@ var notif = new Notification(notifTitle, options);
 setTimeout(randomNotification, 30000); 
 }
 
-if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('serviceworker.js');
-};
+
 
 self.addEventListener('install', (e) => {
     console.log('[Service Worker] Install'); 
