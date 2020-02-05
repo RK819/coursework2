@@ -45,7 +45,8 @@ app.get('/', function (req, res) {
 
              }) 
 
-app.post('/collections/:collectionName', (req, res, next) => {
+app.post('/collections/:collectionName', urlencodeParser,(req, res, next) => {
+    res.setHeader ('Access-Control-Allow-Origin', '*')
 req.collection.insert(req.body, (e, results) => {
  if (e) return next(e)
  res.send(results.ops)
