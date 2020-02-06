@@ -32,7 +32,7 @@ self.addEventListener('install', (e) => {
 
 var cacheName = 'manifest.js'; 
 var appShellFiles = [ 
-    '/Desktop\web_app_course_work_2/geography.jpg',
+    '/Desktop\coursework2/geography.jpg',
     '/Desktop\web_app_course_work_2/history.jpg',
     '/Desktop\web_app_course_work_2/math.jpg',
     '/Desktop\web_app_course_work_2/science.jpg',

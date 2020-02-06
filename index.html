@@ -79,8 +79,15 @@
                     </form>
                     </div>
 
-
-
+                    <div id="deletecourses">
+                        <h1 style="text-align:center">deletecourse</h1>
+                        
+                        <form>
+                            <label >id</label>
+                            <input  type="text" name ="id" v-model="id">
+                            <button v-on:click='deletecourse'>DELETE</button>
+                        </form>
+                    </div>
 
 
 
@@ -125,6 +132,10 @@
                                     {{userMessage}}
                                     </span>
     </div>
+    
+
+
+
         <script>
             fetch('http://localhost:3000/collections/lessons')
             .then(function(response)
@@ -233,6 +244,33 @@ methods:{
 }
 }})
 
+var testing6 = new Vue({
+el: '#deletecourses',
+data: {
+id:'',
+               
+},
+methods:{
+    deletecourse:function () {
+         var topicid = this.id
+         
+        
+         alert(  topicid );
+  
+   fetch(`/collections/lessons/${topicid}`, {
+    method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+    'Content-Type': 'application/json',
+  },
+    
+    body: JSON.stringify({id: this.id}) 
+  }).then(function (response){
+      return response.json()
+  }).then(function(data){
+  console.log('post rest', data)
+  })
+}
+}})
 
 
 

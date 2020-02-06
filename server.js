@@ -80,7 +80,7 @@ res.send((result.result.n === 1) ? { msg: 'success' } : { msg: 'error' })
 })
 })
 
-app.delete('/collections/:collectionName/:id', (req, res, next) => {
+app.delete('/collections/:collectionName/:id',urlencodeParser, (req, res, next) => {
     req.collection.deleteOne({ _id: ObjectID(req.params.id) }, (e, result) => {
         if (e) return next(e)
         res.send((result.result.n === 1) ? { msg: 'success' } : { msg: 'error' })
