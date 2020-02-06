@@ -33,13 +33,13 @@ self.addEventListener('install', (e) => {
 var cacheName = 'manifest.js'; 
 var appShellFiles = [ 
     '/Desktop\coursework2/geography.jpg',
-    '/Desktop\web_app_course_work_2/history.jpg',
-    '/Desktop\web_app_course_work_2/math.jpg',
-    '/Desktop\web_app_course_work_2/science.jpg',
-    '/Desktop\web_app_course_work_2/design.jpg',
-    '/Desktop\web_app_course_work_2/index.html',
-    '/Desktop\web_app_course_work_2/server.js',
-    '/Desktop\web_app_course_work_2/serviceworker.js',
+    '/Desktop\coursework2/history.jpg',
+    '/Desktop\coursework2/math.jpg',
+    '/Desktop\coursework2/science.jpg',
+    '/Desktop\coursework2/design.jpg',
+    '/Desktop\coursework2/index.html',
+    '/Desktop\coursework2/server.js',
+    '/Desktop\coursework2/serviceworker.js',
 ];
 
 var gamesImages = [];
@@ -101,29 +101,6 @@ self.addEventListener('fetch', function (e) {
                 );
             });
 
-<link rel="manifest" href="js13kpwa.webmanifest"></link>
 
-{
-    "name": "js13kGames Progressive Web App",
-    "short_name": "js13kPWA",
-    "description": "Progressive Web App that lists games submitted to the A-Frame
-    category in the js13kGames 2017 competition.",
-    "icons": [ 
-        { 
-            "src": "icons/icon-32.png",
-            "sizes": "32x32",
-            "type": "image/png"
-        },
 
-        { 
-            "src": "icons/icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png" 
-        }
 
-    ],
-    "start_url": "/pwa-examples/js13kpwa/index.html", 
-    "display": "fullscreen", 
-    "theme_color": "#B12A34",
-    "background_color": "#B12A34"
-}

@@ -62,25 +62,16 @@ req.collection.findOne({ _id: new ObjectID(req.params.id) }, (e, result) => {
 })
 }) 
 
-app.put('/collections/:collectionName/:id', urlencodeParser, (req, res, next) =>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    var id = req.params.id
-    console.log (id+"hiii")
-    console.log (req.body.topic)
-    console.log (req.body.location)
-    console.log (req.body)
-    req.collection.updateOne({ _id: new ObjectID(req.params.id) },
-
-{ $set:req.body},
-
-{ safe: true, multi: false }, (e, result) => {
-if (e) return next(e)
-console.log(req.params)
-res.send((result.result.n === 1) ? { msg: 'success' } : { msg: 'error' })
+app.put('/collections/:collectionName/:id', (req, res, next) => {
+ req.collection.update({ _id: new ObjectID(req.params.id) },
+ { $set: req.body },
+ { safe: true, multi: false }, (e, result) => {
+    if (e) return next(e) 
+    res.send((result.result.n === 1) ? { msg: 'success' } : { msg: 'error' }) 
 })
 })
 
-app.delete('/collections/:collectionName/:id',urlencodeParser, (req, res, next) => {
+app.delete('/collections/:collectionName/:id', (req, res, next) => {
     req.collection.deleteOne({ _id: ObjectID(req.params.id) }, (e, result) => {
         if (e) return next(e)
         res.send((result.result.n === 1) ? { msg: 'success' } : { msg: 'error' })
