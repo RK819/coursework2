@@ -30,7 +30,7 @@ self.addEventListener('install', (e) => {
     console.log('[Service Worker] Install'); 
 });    
 
-var cacheName = 'manifest.js'; 
+var cacheName = 'cache1'; 
 var appShellFiles = [ 
     '/Desktop\coursework2/geography.jpg',
     '/Desktop\coursework2/history.jpg',
@@ -80,10 +80,10 @@ self.addEventListener('fetch', function (e) {
 
     });
 
-    var cacheName = 'js13kPWA-v1';
+    var cacheName = 'cache1';
     self.addEventListener('install', (e) => { 
         e.waitUntil(  
-            caches.open('js13kPWA-v2').then((cache) => {   
+            caches.open('cache1').then((cache) => {   
                 return cache.addAll(contentToCache); 
             })
             );

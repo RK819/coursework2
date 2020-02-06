@@ -2,16 +2,17 @@
     "name": "js13kGames Progressive Web App",
     "icons": [ 
         { 
-            "src": "icons/icon-32.png", 
+            "src": "math.jpg", 
             "sizes": "32x32", 
             "type": "image/png" 
         },
 
 
-        {  "src": "icons/icon-512.png", 
+        {  "src": "history.jpg", 
             "sizes": "512x512", 
             "type": "image/png" 
         }
+
 
     ],
 
