@@ -16,6 +16,8 @@ randomNotification();
 
 
 
+
+
 function randomNotification() {
     var randomItem = Math.floor(Math.random()*games.length);
     var notifTitle = games[randomItem].name;
