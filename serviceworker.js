@@ -18,6 +18,8 @@ var appShellFiles = [
     '/Desktop\coursework2/index.html',
     '/Desktop\coursework2/server.js',
     '/Desktop\coursework2/serviceworker.js',
+    '/Desktop\coursework2/app.js',
+
 ];
 
 var gamesImages = [];
@@ -30,6 +32,29 @@ var contentToCache = appShellFiles.concat(gamesImages);
 self.addEventListener('fetch', (e) => {
 console.log('[Service Worker] Fetched resource '+e.request.url);
 });
+
+self.addEventListener('install', function(e) {
+
+    console.log('[Serviceworker] Install');
+  
+    e.waitUntil(
+  
+      caches.open(cacheName).then(function(cache) {
+  
+        console.log('[Service Worker] Caching all: app shell and content');
+  
+        return cache.addAll(contentToCache);
+  
+      })
+  
+    );
+  
+  });
+
+
+
+//fecthing = conten using service worker
+
 
 self.addEventListener('fetch', function (e) { 
     e.respondWith(
@@ -49,26 +74,7 @@ self.addEventListener('fetch', function (e) {
 
     });
 
-    var cacheName = 'js13kPWA-v1';
-    self.addEventListener('install', (e) => { 
-        e.waitUntil(  
-            caches.open('js13kPWA-v2').then((cache) => {   
-                return cache.addAll(contentToCache); 
-            })
-            );
-        });
-
-        self.addEventListener('activate', (e) => { 
-            e.waitUntil( 
-                caches.keys().then((keyList) => { 
-                    return Promise.all(keyList.map((key) => {
-                        if(key !== cacheName) {
-                            return caches.delete(key)
-                        }
-                    })); 
-                })
-                );
-            });
+  
 
 
 
