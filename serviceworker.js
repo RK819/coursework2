@@ -1,36 +1,14 @@
-if('serviceWorker' in navigator) {
- navigator.serviceWorker.register('/coursework2/sw.js');
-};
-
-var button = document.getElementById("notifications");
-button.addEventListener('click', function(e) {
-Notification.requestPermission().then(function(result) { 
-if(result === 'granted') { 
-randomNotification(); 
-}
-});
-});
-
-function randomNotification() {
-var randomItem = Math.floor(Math.random()*games.length);
-var notifTitle = games[randomItem].name;
-var notifBody = 'Created by '+games[randomItem].author+'.';
-var notifImg = 'data/img/'+games[randomItem].slug+'.jpg';
-var options = { 
-body: notifBody, 
-icon: notifImg 
-}
-var notif = new Notification(notifTitle, options); 
-setTimeout(randomNotification, 30000); 
-}
-
-
-
 self.addEventListener('install', (e) => {
-    console.log('[Service Worker] Install'); 
-});    
+    console.log('[Service Worker] Install');
+    e.waitUntil(
+   caches.open(cacheName).then((cache) => { 
+   console.log('[Service Worker] Caching all: app shell and content');
+   return cache.addAll(contentToCache);
+   })
+   );
+   });
 
-var cacheName = 'cache1'; 
+var cacheName = 'js13kpwa.webmanifest'; 
 var appShellFiles = [ 
     '/Desktop\coursework2/geography.jpg',
     '/Desktop\coursework2/history.jpg',
@@ -48,15 +26,6 @@ for(var i=0; i<games.length; i++) {
 }
 var contentToCache = appShellFiles.concat(gamesImages);
 
-self.addEventListener('install', (e) => {
- console.log('[Service Worker] Install');
- e.waitUntil(
-caches.open(cacheName).then((cache) => { 
-console.log('[Service Worker] Caching all: app shell and content');
-return cache.addAll(contentToCache);
-})
-);
-});
 
 self.addEventListener('fetch', (e) => {
 console.log('[Service Worker] Fetched resource '+e.request.url);
@@ -80,10 +49,10 @@ self.addEventListener('fetch', function (e) {
 
     });
 
-    var cacheName = 'cache1';
+    var cacheName = 'js13kPWA-v1';
     self.addEventListener('install', (e) => { 
         e.waitUntil(  
-            caches.open('cache1').then((cache) => {   
+            caches.open('js13kPWA-v2').then((cache) => {   
                 return cache.addAll(contentToCache); 
             })
             );
