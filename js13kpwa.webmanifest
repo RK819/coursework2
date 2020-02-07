@@ -3,13 +3,13 @@
     "icons": [ 
         { 
             "src": "math.jpg", 
-            "sizes": "32x32", 
+            "sizes": "1414x114", 
             "type": "image/png" 
         },
 
 
         {  "src": "history.jpg", 
-            "sizes": "512x512", 
+            "sizes": "114x114", 
             "type": "image/png" 
         }
 
