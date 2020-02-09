@@ -43,7 +43,7 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('install',(e) => {
    e.waitUntil(
-   caches.open('cacheFiles-v2').then((cache) => {
+   caches.open('cacheFiles-v1').then((cache) => {
        return cache.addAll(contentToCache);
    }));
 });

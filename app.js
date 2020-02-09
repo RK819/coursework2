@@ -1,5 +1,5 @@
 if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/coursework2/serviceworker.js');
+    navigator.serviceWorker.register('/serviceworker.js');
    };
 
  

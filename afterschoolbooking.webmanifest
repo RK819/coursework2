@@ -3,7 +3,7 @@
     "icons": [ 
         { 
             "src":"data/images/math.png",
-            "sizes": "1414x114", 
+            "sizes": "114x114", 
             "type": "image/png" 
         },
 
