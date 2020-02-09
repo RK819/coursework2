@@ -2,14 +2,14 @@
     "name": "Afterschool booking",
     "icons": [ 
         { 
-            "src":"data/images/math.png",
+            "src":"data/images/math.jpg",
             "sizes": "114x114", 
             "type": "image/png" 
         },
 
 
         {  
-            "src":"data/images/history.png",
+            "src":"data/images/history.jpg",
             "sizes": "114x114", 
             "type": "image/png" 
         }
