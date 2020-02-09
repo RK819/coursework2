@@ -1,3 +1,21 @@
+var cacheName = 'cacheFiles-v1'; 
+
+var appShellFiles = [
+    '/coursework2/',
+    '/coursework2/data/images/geography.jpg',
+    '/coursework2/data/images/history.jpg',
+    '/coursework2/data/images/math.jpg',
+    '/coursework2/data/images/science.jpg',
+    '/coursework2/data/images/design.jpg',
+    '/coursework2/index.html',
+    '/coursework2/server.js',
+    '/coursework2/serviceworker.js',
+    '/coursework2/app.js',
+
+];
+
+var contentToCache = [] = appShellFiles;
+
 self.addEventListener('install', (e) => {
     console.log('[Service Worker] Install');
     e.waitUntil(
@@ -8,71 +26,41 @@ self.addEventListener('install', (e) => {
    );
    });
 
-var cacheName = 'js13kpwa.webmanifest'; 
-var appShellFiles = [ 
-    '/Desktop\coursework2/geography.jpg',
-    '/Desktop\coursework2/history.jpg',
-    '/Desktop\coursework2/math.jpg',
-    '/Desktop\coursework2/science.jpg',
-    '/Desktop\coursework2/design.jpg',
-    '/Desktop\coursework2/index.html',
-    '/Desktop\coursework2/server.js',
-    '/Desktop\coursework2/serviceworker.js',
-    '/Desktop\coursework2/app.js',
-
-];
-
-var gamesImages = [];
-for(var i=0; i<games.length; i++) {
-    gamesImages.push('data/img/'+games[i].slug+'.jpg');
-}
-var contentToCache = appShellFiles.concat(gamesImages);
-
-
-self.addEventListener('fetch', (e) => {
-console.log('[Service Worker] Fetched resource '+e.request.url);
+   self.addEventListener('fetch', function (e) {
+    e.respondWith(
+        caches.match(e.request).then(function(r){
+            console.log('[Service Worker] Fetching resource: '+e.request.url);
+            return r || fetch(e.request).then( function (response) {
+                return caches.open(cacheName).then(function (cache)
+                {
+               console.log('[Service Worker] Caching new resource: '+e.request.url);
+               cache.put(e.request, response.clone());
+               return response;
+           });
+       });
+   }));
 });
 
-self.addEventListener('install', function(e) {
+self.addEventListener('install',(e) => {
+   e.waitUntil(
+   caches.open('cacheFiles-v2').then((cache) => {
+       return cache.addAll(contentToCache);
+   }));
+});
 
-    console.log('[Serviceworker] Install');
-  
-    e.waitUntil(
-  
-      caches.open(cacheName).then(function(cache) {
-  
-        console.log('[Service Worker] Caching all: app shell and content');
-  
-        return cache.addAll(contentToCache);
-  
-      })
-  
-    );
-  
-  });
+self.addEventListener('activate',(e) => {
 
-
-
-//fecthing = conten using service worker
+   e.waitUntil(
+   caches.keys().then((keyList) => {
+   return Promise.all(keyList.map((key) => { 
+   if (key !== cacheName) { 
+   return caches.delete(key);
+   }}
+   ));
+   }));
+   });
 
 
-self.addEventListener('fetch', function (e) { 
-    e.respondWith(
-        caches.match(e.request).then(function (r) {
-            console.log('[Service Worker] Fetching resource: ' + e.request.url);
-            return r || fetch(e.request).then(function (response) {
-                return caches.open(cacheName).then(function (cache) {
-                    console.log('[Service Worker] Caching new resource: ' + e.request.url);
-                    cache.put(e.request, response.clone()); 
-                    return response; 
-                }); 
-            }); 
-
-        }) 
-
-        );
-
-    });
 
   
 
