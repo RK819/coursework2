@@ -9,7 +9,7 @@ var appShellFiles = [
     '/coursework2/data/images/design.jpg',
     '/coursework2/index.html',
     '/coursework2/server.js',
-    '/coursework2/serviceworker.js',
+    '/coursework2/sw.js',
     '/coursework2/app.js',
 
 ];
