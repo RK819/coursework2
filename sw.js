@@ -2,6 +2,7 @@ var cacheName = 'cacheFiles-v1';
 
 var appShellFiles = [
     '/coursework2/',
+    '/coursework2/data/images/afterschool.png',
     '/coursework2/data/images/geography.jpg',
     '/coursework2/data/images/history.jpg',
     '/coursework2/data/images/math.jpg',
@@ -44,7 +45,7 @@ self.addEventListener('install',(e)=>{
 
 self.addEventListener('install',(e) => {
     e.waitUntil(
-    caches.open('cacheFiles-v1').then((cache) => {
+    caches.open('cacheFiles-v2').then((cache) => {
         return cache.addAll(contentToCache);
     }));
 });
