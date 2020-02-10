@@ -155,6 +155,25 @@
                }).catch(function(err){
             console.log('Fetch problem: '+err.message);
             });
+
+
+            var displayblur = new Vue({
+                el: '#content',
+                data: {
+
+                    courses : [ { 'slug':'lego','topic': 'Lego', 'provider':'micheal', 'location': 'hendon', 'price': 100 , 'ranking':[{'user':'email1','ranking':5},{'user':'email2','ranking':3}]},
+      { 'slug':'geography','topic': 'geography', 'provider':'nina', 'location': 'slouhh', 'price': 90 },
+      {'slug':'history', 'topic': 'math','provider':'david',  'location': 'london', 'price': 85 },
+      {'slug':'math', 'topic': 'Sport of under 4','provider':'khan',  'location': 'west londom', 'price': 95 },
+      {'slug':'science', 'topic': 'science','provider':'smith',  'location': 'Hackney', 'price': 99 },
+      {'slug':'design', 'topic': 'design','provider':'raja',  'location': 'north london', 'price': 98 },
+      {'slug':'design', 'topic': 'design','provider':'patel',  'location': 'east london', 'price': 99 },
+      {'slug':'design', 'topic': 'design','provider':'dave',  'location': 'south london', 'price': 79 },
+      {'slug':'design', 'topic': 'design','provider':'bob',  'location': 'feltham', 'price': 90 },
+      {'slug':'design', 'topic': 'design','provider':'steve',  'location': 'mdx', 'price': 200 },
+      ]
+ }})
+
             
             
             var testing = new Vue({
