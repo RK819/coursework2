@@ -1,6 +1,7 @@
-if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/coursework2/serviceworker.js');
-   };
+if ('serviceWorker'in navigator)
+{navigator.serviceWorker.register('/coursework2/sw.js');
+};
+
 
  
 var button = document.getElementById("notifications");
