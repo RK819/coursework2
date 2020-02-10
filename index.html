@@ -8,6 +8,7 @@
             <script src="https://cdn.jsdelivr.net/npm/vue"></script>
             <link rel="manifest" href="afterschoolbooking.webmanifest"></link>
             <script src="app.js" defer></script>
+            <script src="data/courses.js" defer></script>
            
 
     </head>
@@ -27,6 +28,26 @@
                  </ul>  
             </div>
         </div>
+
+        <section id="content">
+            <article v-for="course in courses">
+              <img src='data/images/afterschool.png' data-src="data/images/history.jpg"  alt='name' width="200" height="200"></img>
+              
+           
+             
+              <h2>{{course.topic}}</h2>
+              <ul>
+                <li>provider:<strong>{{course.provider}}</strong></li>
+                <li>location:{{course.location}}</li>
+                <li>price:{{course.price}}</li>
+                <li>Ranking:{{course.ranking}}</li>
+               
+                
+              </ul>
+            </article>
+          </section>
+
+        
 
         <button id="notifications" >notification</button>
 
@@ -95,6 +116,8 @@
                             <button v-on:click='deletecourse'>DELETE</button>
                         </form>
                     </div>
+
+                   
 
 
 
