@@ -2,14 +2,14 @@
     "name": "Afterschool_booking",
     "icons": [ 
         { 
-            "src": "icons/history.png",
+            "src":"data/images/afterschool.png",
             "sizes": "114x114", 
             "type": "image/png" 
         },
 
 
         {  
-            "src":"data/images/history.jpg",
+            "src":"data/images/logo.png",
             "sizes": "114x114", 
             "type": "image/png" 
         }
