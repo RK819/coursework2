@@ -1,4 +1,3 @@
-// Files to cache
 var cacheName = 'cacheFiles-v1'; 
 
 var appShellFiles = [
