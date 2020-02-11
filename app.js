@@ -1,9 +1,10 @@
+// Registering Service Worker
 if ('serviceWorker'in navigator)
 {navigator.serviceWorker.register('/coursework2/sw.js');
 };
 
 
- 
+// Requesting permission for Notifications after clicking on the button 
 var button = document.getElementById("notifications");
 button.addEventListener('click', function(e) {
 Notification.requestPermission().then(function(result) { 
@@ -13,7 +14,7 @@ randomNotification();
 });
 });
 
-
+// Setting up random Notification
 function randomNotification(){
     var randomItem = Math.floor(Math.random()*courses.length);
     var notifTitle = courses[randomItem].topic;
@@ -25,6 +26,8 @@ function randomNotification(){
     var notif = new Notification(notifTitle,options);
     setTimeout(randomNotification,300000000);
 }
+
+// Progressive loading images
 
 let imagesToLoad = document.querySelectorAll('img[data-src]');
 const loadImages = (image) => {

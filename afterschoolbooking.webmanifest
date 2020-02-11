@@ -3,7 +3,7 @@
     "icons": [ 
         { 
             "src":"data/images/afterschool.png",
-            "sizes": "114px x 114px", 
+            "sizes": "114 x 114", 
             "type": "image/png" 
         },
 

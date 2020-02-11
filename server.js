@@ -1,12 +1,13 @@
+// load Express.js
 const express = require('express')
 
+// load bodyParser module for json payload parsing
 const bodyParser = require('body-parser')
 var path = require('path');
 const app = express() 
-
-
 app.use(bodyParser.json())
 
+// connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
 let db;
 MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
@@ -15,6 +16,7 @@ MongoClient.connect('mongodb://localhost:27017/', (err, client) => {
 var urlencodeParser = bodyParser.urlencoded({extended:false})
 app.use(bodyParser.json())
 
+// get the collection name
 app.param('collectionName', (req, res, next, collectionName) => {
     req.collection = db.collection(collectionName) 
     return next()
@@ -31,9 +33,12 @@ app.param('users', (req, res, next, collectionName) => {
 })
 */
 
+// dispaly a message for root path to show that API is working
 app.get('/', function (req, res) { 
     res.send('Select a collection, e.g., /penchod/messages')
  }) 
+
+ // retrieve all the objects from an collection
   app.get('/collections/:collectionName', urlencodeParser,(req, res) => {
         res.setHeader ('Access-Control-Allow-Origin', '*')
         req.collection.find({}, { limit: 10, sort: [['price', -1]] }).toArray((e, results) =>
@@ -52,7 +57,7 @@ req.collection.insert(req.body, (e, results) => {
  res.send(results.ops)
    })
  })
-
+// retrieve a lesson by mongodb ID
  const ObjectID = require('mongodb').ObjectID;
  app.get('/collections/:collectionName/:id', (req, res, next) => { 
 console.log('searching json object with id:', req.params.id)
@@ -62,6 +67,8 @@ req.collection.findOne({ _id: new ObjectID(req.params.id) }, (e, result) => {
 })
 }) 
 
+// update a lesson by ID
+
 app.put('/collections/:collectionName/:id', (req, res, next) => {
  req.collection.update({ _id: new ObjectID(req.params.id) },
  { $set: req.body },
@@ -70,7 +77,7 @@ app.put('/collections/:collectionName/:id', (req, res, next) => {
     res.send((result.result.n === 1) ? { msg: 'success' } : { msg: 'error' }) 
 })
 })
-
+// delete a lesson by ID
 app.delete('/collections/:collectionName/:id', (req, res, next) => {
     req.collection.deleteOne({ _id: ObjectID(req.params.id) }, (e, result) => {
         if (e) return next(e)

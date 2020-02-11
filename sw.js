@@ -1,3 +1,4 @@
+// Files to cache
 var cacheName = 'cacheFiles-v1'; 
 
 var appShellFiles = [
@@ -22,7 +23,7 @@ var appShellFiles = [
 ];
 
 var contentToCache = [] = appShellFiles;
-
+// Installing Service Worker
 self.addEventListener('install',(e)=>{
     console.log('[Service Worker] Install');
     e.waitUntil(
@@ -33,6 +34,8 @@ self.addEventListener('install',(e)=>{
             );
         }
  );
+
+ // Fetching content using Service Worker
 
  self.addEventListener('fetch', function (e) {
      e.respondWith(
